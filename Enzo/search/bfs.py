@@ -19,6 +19,7 @@ class BreadthFirstSearch:
 
         # Initialize the explored dictionary to be empty
         explored = {}
+        seen = {}
 
         # Add the node to the explored dictionary
         explored[node.state] = True
@@ -54,8 +55,9 @@ class BreadthFirstSearch:
                 new_node = Node("", new_state, node.cost + grid.get_cost(new_state))
                 new_node.parent = node
                 new_node.action = direction
-                if not explored.get(new_state, False):
+                if not seen.get(new_state, False):
                     frontier.add(new_node)
+                    seen[new_node.state] = True
 
             iteration_count += 1
 
